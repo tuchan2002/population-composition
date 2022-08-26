@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { getPrefectures } from "./apis";
+import { getPrefectures, getReportByPrefecture } from "./apis";
 import LineChart from "./components/Charts/LineChart";
 import Header from "./components/Header";
 import Prefectures from "./components/Prefectures";
 
 function App() {
   const [prefectures, setPrefectures] = useState([]);
-  const [checkedPrefCode, setCheckedPrefCode] = useState([]);
+  const [checkedPrefectures, setCheckedPrefectures] = useState([]);
+  const [clickedPrefecture, setClickedPrefecture] = useState();
+  const [reports, setReports] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,13 +19,48 @@ function App() {
     fetchData();
   }, []);
 
-  const handleCheckedPrefCode = (prefCode) => {
-    setCheckedPrefCode((prev) => {
-      const isChecked = checkedPrefCode.includes(prefCode);
-      if (isChecked) {
-        return checkedPrefCode.filter((item) => item !== prefCode);
+  useEffect(() => {
+    const handleSetReportsData = async () => {
+      console.log("clickedPrefecture", clickedPrefecture);
+      console.log("checkedPrefectures", checkedPrefectures);
+
+      if (
+        checkedPrefectures.filter(
+          (item) => item.prefCode === clickedPrefecture.prefCode
+        ).length > 0
+      ) {
+        const report = await getReportByPrefecture(
+          checkedPrefectures[checkedPrefectures.length - 1]
+        );
+
+        console.log("report", report);
+        setReports((prev) => [...prev, report]);
       } else {
-        return [...prev, prefCode];
+        setReports(
+          reports.filter(
+            (report) => report.prefCode !== clickedPrefecture.prefCode
+          )
+        );
+      }
+    };
+    if (checkedPrefectures.length > 0) {
+      handleSetReportsData();
+    }
+  }, [checkedPrefectures.length, prefectures]);
+
+  const handleCheckedPrefectures = (prefecture) => {
+    setClickedPrefecture(prefecture);
+    setCheckedPrefectures((prev) => {
+      if (
+        checkedPrefectures.filter(
+          (item) => item.prefCode === prefecture.prefCode
+        ).length > 0
+      ) {
+        return checkedPrefectures.filter(
+          (item) => item.prefCode !== prefecture.prefCode
+        );
+      } else {
+        return [...prev, prefecture];
       }
     });
   };
@@ -33,10 +70,10 @@ function App() {
       <Header />
       <Prefectures
         prefectures={prefectures}
-        checkedPrefCode={checkedPrefCode}
-        handleCheckedPrefCode={handleCheckedPrefCode}
+        checkedPrefectures={checkedPrefectures}
+        handleCheckedPrefectures={handleCheckedPrefectures}
       />
-      <LineChart checkedPrefCode={checkedPrefCode} />
+      <LineChart checkedPrefectures={checkedPrefectures} reports={reports} />
     </div>
   );
 }
