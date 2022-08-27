@@ -10,7 +10,6 @@ function App() {
   const [checkedPrefectures, setCheckedPrefectures] = useState([]);
   const [clickedPrefecture, setClickedPrefecture] = useState();
   const [reports, setReports] = useState([]);
-  const [isShowMenuIcon, setIsShowMenuIcon] = useState(false);
 
   const prefecturesRef = useRef();
 
@@ -62,19 +61,6 @@ function App() {
     });
   };
 
-  const showMenuIcon = () => {
-    if (window.innerWidth < 1024) {
-      setIsShowMenuIcon(true);
-    } else {
-      setIsShowMenuIcon(false);
-    }
-  };
-
-  useEffect(() => {
-    console.log("re-render");
-    showMenuIcon();
-  }, []);
-
   const handleClickMenuIcon = () => {
     prefecturesRef.current.style.transform = "translateX(0)";
   };
@@ -85,10 +71,7 @@ function App() {
 
   return (
     <div>
-      <Header
-        isShowMenuIcon={isShowMenuIcon}
-        handleClickMenuIcon={handleClickMenuIcon}
-      />
+      <Header handleClickMenuIcon={handleClickMenuIcon} />
       <div className={styles.main}>
         <div className={styles.prefectures} ref={prefecturesRef}>
           <Prefectures

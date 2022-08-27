@@ -13,6 +13,7 @@
 }
 
 .menuIcon {
+  display: none;
   min-width: 44px;
   min-height: 44px;
   cursor: pointer;
@@ -25,6 +26,9 @@
 @media screen and (max-width: 1023px) {
   .header {
     justify-content: space-between;
+  }
+  .menuIcon {
+    display: block;
   }
 }
 

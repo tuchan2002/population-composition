@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import styles from "./LineChart.module.css";
-import { IoArrowBack, IoArrowUp } from "react-icons/io5";
+import { IoArrowBack } from "react-icons/io5";
 
 const initOptions = {
   chart: {
@@ -59,28 +59,14 @@ const generateOptions = (reports) => {
 };
 const LineChart = ({ reports }) => {
   const [options, setOptions] = useState({});
-  const [isArrowLeftIcon, setIsArrowLeftIcon] = useState(true);
 
   useEffect(() => {
-    console.log("reports.length", reports.length);
-    console.log("REPORTS", reports);
     if (reports.length > 0) {
       setOptions(generateOptions(reports));
     } else {
       setOptions(initOptions);
     }
   }, [reports.length]);
-
-  const handleShowArrowIcon = () => {
-    if (window.innerWidth < 1024) {
-      setIsArrowLeftIcon(false);
-    } else {
-      setIsArrowLeftIcon(true);
-    }
-  };
-  useEffect(() => {
-    handleShowArrowIcon();
-  }, []);
 
   return reports.length > 0 ? (
     <>
@@ -89,11 +75,7 @@ const LineChart = ({ reports }) => {
     </>
   ) : (
     <div className={styles.hintWrapper}>
-      {isArrowLeftIcon ? (
-        <IoArrowBack className={styles.arrowIcon} size={44} />
-      ) : (
-        <IoArrowUp className={styles.arrowIcon} size={44} />
-      )}
+      <IoArrowBack className={styles.arrowIcon} size={44} />
       <h2 className={styles.hint}>
         チャートを表示するには、都道府県を少なくとも 1 つ選択してください。
       </h2>

@@ -1,6 +1,6 @@
 @keyframes arrowLeftAnimation {
   from {
-    transform: translateX(10%);
+    transform: translateX(15%);
   }
   to {
     transform: translateX(-15%);
@@ -9,10 +9,10 @@
 
 @keyframes arrowUpAnimation {
   from {
-    transform: translateY(0);
+    transform: translateY(0) rotate(90deg);
   }
   to {
-    transform: translateY(-25%);
+    transform: translateY(-30%) rotate(90deg);
   }
 }
 
@@ -23,7 +23,7 @@
 }
 
 .hintWrapper {
-  margin: 40px 0;
+  margin: 60px 0;
   display: flex;
   align-items: center;
   width: fit-content;
@@ -32,7 +32,7 @@
 .arrowIcon {
   min-width: 44px;
   min-height: 44px;
-  animation: arrowLeftAnimation 2s infinite linear alternate;
+  animation: arrowLeftAnimation 1.5s infinite linear alternate;
 }
 
 .hint {
@@ -48,7 +48,7 @@
     align-items: stretch;
   }
   .arrowIcon {
-    animation: arrowUpAnimation 2s infinite linear alternate;
+    animation: arrowUpAnimation 1.5s infinite linear alternate;
   }
 }
 
