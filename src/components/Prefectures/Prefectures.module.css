@@ -1,3 +1,7 @@
+.prefecturesWrapper {
+  grid-column: span 1 / span 1;
+}
+
 .top {
   display: none;
 }
@@ -60,6 +64,24 @@
 }
 
 @media screen and (max-width: 1023px) {
+  .prefecturesWrapper {
+    padding: 0 20px 20px 20px;
+    position: fixed;
+    width: 75%;
+    max-width: 360px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 1000;
+    border-right: 1px solid #d1d1d1;
+    overflow-y: scroll;
+    transform: translateX(-100%);
+    transition: transform ease-out 0.25s;
+  }
+  .prefecturesWrapper::-webkit-scrollbar {
+    display: none;
+  }
   .top {
     display: block;
     border-bottom: 1px solid #ccc;

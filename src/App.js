@@ -14,11 +14,11 @@ function App() {
   const prefecturesRef = useRef();
 
   useEffect(() => {
-    const fetchData = async () => {
+    const handleSetPrefecturesData = async () => {
       const prefectures = await getPrefectures();
       setPrefectures(prefectures);
     };
-    fetchData();
+    handleSetPrefecturesData();
   }, []);
 
   useEffect(() => {
@@ -34,15 +34,16 @@ function App() {
 
         setReports((prev) => [...prev, report]);
       } else {
-        setReports(
-          reports.filter(
+        setReports((prev) =>
+          prev.filter(
             (report) => report.prefCode !== clickedPrefecture.prefCode
           )
         );
       }
     };
     handleSetReportsData();
-  }, [checkedPrefectures.length, prefectures, clickedPrefecture]);
+    console.log("App: re-render");
+  }, [checkedPrefectures, clickedPrefecture]);
 
   const handleCheckedPrefectures = (prefecture) => {
     setClickedPrefecture(prefecture);
@@ -73,20 +74,14 @@ function App() {
     <div>
       <Header handleClickMenuIcon={handleClickMenuIcon} />
       <div className={styles.main}>
-        <div className={styles.prefectures} ref={prefecturesRef}>
-          <Prefectures
-            prefectures={prefectures}
-            checkedPrefectures={checkedPrefectures}
-            handleCheckedPrefectures={handleCheckedPrefectures}
-            handleClickCloseIcon={handleClickCloseIcon}
-          />
-        </div>
-        <div className={styles.linechart}>
-          <LineChart
-            checkedPrefectures={checkedPrefectures}
-            reports={reports}
-          />
-        </div>
+        <Prefectures
+          prefecturesRef={prefecturesRef}
+          prefectures={prefectures}
+          checkedPrefectures={checkedPrefectures}
+          handleCheckedPrefectures={handleCheckedPrefectures}
+          handleClickCloseIcon={handleClickCloseIcon}
+        />
+        <LineChart checkedPrefectures={checkedPrefectures} reports={reports} />
       </div>
     </div>
   );

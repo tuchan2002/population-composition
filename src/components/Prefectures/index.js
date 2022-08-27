@@ -3,13 +3,14 @@ import styles from "./Prefectures.module.css";
 import { IoClose } from "react-icons/io5";
 
 const Prefectures = ({
+  prefecturesRef,
   prefectures,
   checkedPrefectures,
   handleCheckedPrefectures,
   handleClickCloseIcon,
 }) => {
   return (
-    <>
+    <div className={styles.prefecturesWrapper} ref={prefecturesRef}>
       <div className={styles.top}>
         <IoClose
           onClick={handleClickCloseIcon}
@@ -35,7 +36,7 @@ const Prefectures = ({
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

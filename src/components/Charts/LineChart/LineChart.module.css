@@ -16,6 +16,10 @@
   }
 }
 
+.linechartWrapper {
+  grid-column: span 3 / span 3;
+}
+
 .title {
   font-weight: 500;
   font-size: 20px;
@@ -42,6 +46,9 @@
 }
 
 @media screen and (max-width: 1023px) {
+  .linechartWrapper {
+    width: 100%;
+  }
   .hintWrapper {
     margin: 10px 0;
     padding: 0;

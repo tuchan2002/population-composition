@@ -11,6 +11,9 @@ const initOptions = {
   title: {
     text: null,
   },
+  accessibility: {
+    enabled: false,
+  },
   xAxis: {
     crosshair: true,
     title: {
@@ -66,19 +69,23 @@ const LineChart = ({ reports }) => {
     } else {
       setOptions(initOptions);
     }
-  }, [reports.length]);
+  }, [reports]);
 
-  return reports.length > 0 ? (
-    <>
-      <h2 className={styles.title}>人口数</h2>
-      <HighchartsReact highcharts={Highcharts} options={options} />
-    </>
-  ) : (
-    <div className={styles.hintWrapper}>
-      <IoArrowBack className={styles.arrowIcon} size={44} />
-      <h2 className={styles.hint}>
-        チャートを表示するには、都道府県を少なくとも 1 つ選択してください。
-      </h2>
+  return (
+    <div className={styles.linechartWrapper}>
+      {reports.length > 0 ? (
+        <>
+          <h2 className={styles.title}>人口数</h2>
+          <HighchartsReact highcharts={Highcharts} options={options} />
+        </>
+      ) : (
+        <div className={styles.hintWrapper}>
+          <IoArrowBack className={styles.arrowIcon} size={44} />
+          <h2 className={styles.hint}>
+            チャートを表示するには、都道府県を少なくとも 1 つ選択してください。
+          </h2>
+        </div>
+      )}
     </div>
   );
 };
