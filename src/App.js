@@ -28,6 +28,11 @@ function App() {
       console.log("clickedPrefecture", clickedPrefecture);
       console.log("checkedPrefectures", checkedPrefectures);
 
+      console.log(
+        checkedPrefectures.filter(
+          (item) => item.prefCode === clickedPrefecture.prefCode
+        ).length
+      );
       if (
         checkedPrefectures.filter(
           (item) => item.prefCode === clickedPrefecture.prefCode
@@ -47,9 +52,7 @@ function App() {
         );
       }
     };
-    if (checkedPrefectures.length > 0) {
-      handleSetReportsData();
-    }
+    handleSetReportsData();
   }, [checkedPrefectures.length, prefectures]);
 
   const handleCheckedPrefectures = (prefecture) => {

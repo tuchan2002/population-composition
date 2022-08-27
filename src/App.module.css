@@ -26,8 +26,8 @@
     background-color: #fff;
     z-index: 1000;
     border-right: 1px solid #d1d1d1;
-    transform: translateX(-100%);
     overflow-y: scroll;
+    transform: translateX(-100%);
     transition: transform ease-out 0.25s;
   }
   .prefectures::-webkit-scrollbar {
