@@ -1,3 +1,11 @@
+.top {
+  display: none;
+}
+
+.closeIcon {
+  cursor: pointer;
+}
+
 .title {
   font-weight: 500;
   font-size: 20px;
@@ -32,8 +40,8 @@
 .prefectureItem > label::before {
   content: "";
   cursor: pointer;
-  width: 24px;
-  height: 24px;
+  width: 25px;
+  height: 25px;
   border-radius: 1px;
   border: 1px solid #000;
 }
@@ -49,4 +57,21 @@
   align-items: center;
   font-size: 24px;
   transition: all ease-out 0.15s;
+}
+
+@media screen and (max-width: 1023px) {
+  .top {
+    display: block;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 8px;
+    margin: 0 -20px 0 -20px;
+    padding: 8px 20px;
+    position: sticky;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+  }
+  .title {
+    margin: 8px 0;
+  }
 }

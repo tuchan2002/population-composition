@@ -83,11 +83,11 @@ function App() {
   }, []);
 
   const handleClickMenuIcon = () => {
-    if (prefecturesRef.current.style.transform === "translateX(0px)") {
-      prefecturesRef.current.style.transform = "translateX(-100%)";
-    } else {
-      prefecturesRef.current.style.transform = "translateX(0px)";
-    }
+    prefecturesRef.current.style.transform = "translateX(0)";
+  };
+
+  const handleClickCloseIcon = () => {
+    prefecturesRef.current.style.transform = "translateX(-100%)";
   };
 
   return (
@@ -102,6 +102,7 @@ function App() {
             prefectures={prefectures}
             checkedPrefectures={checkedPrefectures}
             handleCheckedPrefectures={handleCheckedPrefectures}
+            handleClickCloseIcon={handleClickCloseIcon}
           />
         </div>
         <div className={styles.linechart}>
