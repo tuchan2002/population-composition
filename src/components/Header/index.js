@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./Header.module.css";
 import { IoMenu } from "react-icons/io5";
 
