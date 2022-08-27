@@ -1,0 +1,40 @@
+.main {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  padding: 8px 20px 20px 20px;
+}
+.prefectures {
+  grid-column: span 1 / span 1;
+}
+.linechart {
+  grid-column: span 3 / span 3;
+}
+
+@media screen and (max-width: 1023px) {
+  .main {
+    display: block;
+  }
+  .prefectures {
+    padding: 0 20px 20px 20px;
+    position: fixed;
+    width: 75%;
+    max-width: 360px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 1000;
+    border-right: 1px solid #d1d1d1;
+    overflow-y: scroll;
+    transform: translateX(-100%);
+    transition: transform ease-out 0.25s;
+  }
+  .prefectures::-webkit-scrollbar {
+    display: none;
+  }
+
+  .linechart {
+    width: 100%;
+  }
+}

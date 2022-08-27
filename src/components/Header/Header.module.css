@@ -1,7 +1,41 @@
 .header {
-  background-color: #d6d6d6;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: #e0e0e0;
   font-weight: 500;
-  font-size: 30px;
-  padding: 16px;
-  text-align: center;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.menuIcon {
+  min-width: 44px;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 28px;
+}
+
+@media screen and (max-width: 1023px) {
+  .header {
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .title {
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 413px) {
+  .title {
+    font-size: 20px;
+  }
 }

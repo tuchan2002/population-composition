@@ -1,0 +1,65 @@
+@keyframes arrowLeftAnimation {
+  from {
+    transform: translateX(10%);
+  }
+  to {
+    transform: translateX(-15%);
+  }
+}
+
+@keyframes arrowUpAnimation {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-25%);
+  }
+}
+
+.title {
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.hintWrapper {
+  margin: 40px 0;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.arrowIcon {
+  min-width: 44px;
+  min-height: 44px;
+  animation: arrowLeftAnimation 2s infinite linear alternate;
+}
+
+.hint {
+  text-align: center;
+  font-weight: 400;
+  font-size: 22px;
+}
+
+@media screen and (max-width: 1023px) {
+  .hintWrapper {
+    margin: 10px 0;
+    padding: 0;
+    align-items: stretch;
+  }
+  .arrowIcon {
+    animation: arrowUpAnimation 2s infinite linear alternate;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .hint {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 413px) {
+  .hint {
+    font-size: 16px;
+  }
+}
