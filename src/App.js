@@ -1,14 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getPrefectures, getReportByPrefecture } from "./apis";
 import LineChart from "./components/Charts/LineChart";
 import Header from "./components/Header";
 import Prefectures from "./components/Prefectures";
+import styles from "./App.module.css";
 
 function App() {
   const [prefectures, setPrefectures] = useState([]);
   const [checkedPrefectures, setCheckedPrefectures] = useState([]);
   const [clickedPrefecture, setClickedPrefecture] = useState();
   const [reports, setReports] = useState([]);
+  const [isShowMenuIcon, setIsShowMenuIcon] = useState(false);
+
+  const prefecturesRef = useRef();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -65,15 +69,48 @@ function App() {
     });
   };
 
+  const showMenuIcon = () => {
+    if (window.innerWidth < 1024) {
+      setIsShowMenuIcon(true);
+    } else {
+      setIsShowMenuIcon(false);
+    }
+  };
+
+  useEffect(() => {
+    console.log("re-render");
+    showMenuIcon();
+  }, []);
+
+  const handleClickMenuIcon = () => {
+    if (prefecturesRef.current.style.transform === "translateX(0px)") {
+      prefecturesRef.current.style.transform = "translateX(-100%)";
+    } else {
+      prefecturesRef.current.style.transform = "translateX(0px)";
+    }
+  };
+
   return (
     <div>
-      <Header />
-      <Prefectures
-        prefectures={prefectures}
-        checkedPrefectures={checkedPrefectures}
-        handleCheckedPrefectures={handleCheckedPrefectures}
+      <Header
+        isShowMenuIcon={isShowMenuIcon}
+        handleClickMenuIcon={handleClickMenuIcon}
       />
-      <LineChart checkedPrefectures={checkedPrefectures} reports={reports} />
+      <div className={styles.main}>
+        <div className={styles.prefectures} ref={prefecturesRef}>
+          <Prefectures
+            prefectures={prefectures}
+            checkedPrefectures={checkedPrefectures}
+            handleCheckedPrefectures={handleCheckedPrefectures}
+          />
+        </div>
+        <div className={styles.linechart}>
+          <LineChart
+            checkedPrefectures={checkedPrefectures}
+            reports={reports}
+          />
+        </div>
+      </div>
     </div>
   );
 }

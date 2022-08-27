@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import styles from "./LineChart.module.css";
 
 const generateOptions = (reports) => {
   const years = reports[0].data.map((item) => item.year);
   return {
     chart: {
-      height: 520,
+      height: 650,
     },
     title: {
       text: null,
@@ -20,9 +21,8 @@ const generateOptions = (reports) => {
     },
     yAxis: {
       min: 0,
-
       title: {
-        text: "人口数",
+        text: null,
       },
     },
 
@@ -55,9 +55,10 @@ const LineChart = ({ reports }) => {
     }
   }, [reports.length]);
   return (
-    <div>
+    <>
+      <h2 className={styles.title}>人口数</h2>
       <HighchartsReact highcharts={Highcharts} options={options} />
-    </div>
+    </>
   );
 };
 
