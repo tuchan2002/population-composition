@@ -18,21 +18,12 @@ function App() {
     const fetchData = async () => {
       const prefectures = await getPrefectures();
       setPrefectures(prefectures);
-      console.log(prefectures);
     };
     fetchData();
   }, []);
 
   useEffect(() => {
     const handleSetReportsData = async () => {
-      console.log("clickedPrefecture", clickedPrefecture);
-      console.log("checkedPrefectures", checkedPrefectures);
-
-      console.log(
-        checkedPrefectures.filter(
-          (item) => item.prefCode === clickedPrefecture.prefCode
-        ).length
-      );
       if (
         checkedPrefectures.filter(
           (item) => item.prefCode === clickedPrefecture.prefCode
@@ -42,7 +33,6 @@ function App() {
           checkedPrefectures[checkedPrefectures.length - 1]
         );
 
-        console.log("report", report);
         setReports((prev) => [...prev, report]);
       } else {
         setReports(
@@ -53,7 +43,7 @@ function App() {
       }
     };
     handleSetReportsData();
-  }, [checkedPrefectures.length, prefectures]);
+  }, [checkedPrefectures.length, prefectures, clickedPrefecture]);
 
   const handleCheckedPrefectures = (prefecture) => {
     setClickedPrefecture(prefecture);
